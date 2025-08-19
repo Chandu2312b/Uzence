@@ -15,6 +15,12 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: 'tag'
+  },
+  viteFinal: async (config) => {
+    config.optimizeDeps = config.optimizeDeps || {};
+    const existing = config.optimizeDeps.exclude || [];
+    config.optimizeDeps.exclude = Array.from(new Set([...existing, 'lucide-react']));
+    return config;
   }
 };
 
